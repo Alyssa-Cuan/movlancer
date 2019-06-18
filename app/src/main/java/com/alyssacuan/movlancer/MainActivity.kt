@@ -6,10 +6,10 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.BaseAdapter
+
 import com.alyssacuan.movlancer.models.Movie
+
 import com.alyssacuan.movlancer.network_connection.SearchRepositoryProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -20,8 +20,7 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+    private var adapter: BaseAdapter? = null
 
     val compositeDisposable: CompositeDisposable = CompositeDisposable()
     private var movieList : List<Movie> = emptyList()
@@ -31,8 +30,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        layoutManager = GridLayoutManager(this, 2)
-        recyclerView.layoutManager = layoutManager
+//        layoutManager = GridLayoutManager(this, 2)
+//        recyclerView.layoutManager = layoutManager
+//        var grid = GridItemDecoration(10,2)
+//        recyclerView.addItemDecoration(grid)
 
         val repository = SearchRepositoryProvider.provideSearchRepository()
 
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                     //Log.d("Result", "There are ${result.total_results} results")
                     movieList = result.results
                     //Log.d("Result", "size: ${movieList.size}")
-                    adapter = RecyclerAdapter(movieList)
+                    adapter = GridAdapter(this, movieList)
                     recyclerView.adapter = adapter
 
                 }, { error ->
