@@ -6,24 +6,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.alyssacuan.movlancer.models.Movie
+import com.squareup.picasso.Picasso
 
-class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(val list : List<Movie>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private val titles = arrayOf("Chapter One",
-        "Chapter Two", "Chapter Three", "Chapter Four",
-        "Chapter Five", "Chapter Six", "Chapter Seven",
-        "Chapter Eight")
+    private var movieList : List<Movie> = emptyList()
 
-    private val details = arrayOf("Item one details", "Item two details",
-        "Item three details", "Item four details",
-        "Item file details", "Item six details",
-        "Item seven details", "Item eight details")
+    private val imageURL : String = "https://image.tmdb.org/t/p/w500/"
 
-    private val images = intArrayOf(R.drawable.android_image_1,
-        R.drawable.android_image_2, R.drawable.android_image_3,
-        R.drawable.android_image_4, R.drawable.android_image_5,
-        R.drawable.android_image_6, R.drawable.android_image_7,
-        R.drawable.android_image_8)
+    init{
+        this.movieList = list
+    }
+
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
         val v = LayoutInflater.from(viewGroup.context)
@@ -32,13 +27,13 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.itemTitle.text = titles[i]
-        //viewHolder.itemRating.text = details[i]
-        viewHolder.itemImage.setImageResource(images[i])
+        viewHolder.itemTitle.text = movieList.get(i).title
+        val posterPath = movieList.get(i).posterPath
+        Picasso.get().load(imageURL+posterPath).into(viewHolder.itemImage)
     }
 
     override fun getItemCount(): Int {
-        return titles.size
+        return movieList.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

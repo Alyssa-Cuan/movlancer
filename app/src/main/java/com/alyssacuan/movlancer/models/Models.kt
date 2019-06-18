@@ -1,7 +1,13 @@
 package com.alyssacuan.movlancer.models
 
 import android.widget.ImageView
+import com.google.gson.annotations.SerializedName
 
-data class Movie(val title: String, val imageUrl: String, val rating: Int)
+data class Movie(
+    @SerializedName("id") val id: Int,
+    @SerializedName("title") val title: String,
+    @SerializedName("vote_average") val voteAverage: Double,
+    @SerializedName("poster_path") val posterPath: String
+)
 
-data class Result (val total_count: Int, val incomplete_results: Boolean, val items: List<Movie>)
+data class Result (val page: Int, val total_results: Int, val total_pages: Int, val results: List<Movie>)
