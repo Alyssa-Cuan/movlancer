@@ -1,6 +1,5 @@
 package com.alyssacuan.movlancer.models
 
-import android.widget.ImageView
 import com.google.gson.annotations.SerializedName
 
 data class Movie(

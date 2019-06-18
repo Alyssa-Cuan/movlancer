@@ -1,12 +1,8 @@
 package com.alyssacuan.movlancer
 
-import androidx.test.InstrumentationRegistry
-import androidx.test.runner.AndroidJUnit4
-
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented movie_item_layout, which will execute on an Android device.

@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">Movlancer</string>
+    <string name="app_name">MovLancer</string>
+    <string name="app_firstname">Mov</string>
+    <string name="app_lastname">Lancer</string>
     <string name="action_settings">Settings</string>
 </resources>

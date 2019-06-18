@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="lancerColor"> #30EEA2</color>
+    <color name="movColor">#FFFFFF</color>
+    <color name="appBarColor">#31333B</color>
+    <color name="bgColor">#282A32</color>
+    <color name="fontColor">#FFFFFF</color>
+
 </resources>

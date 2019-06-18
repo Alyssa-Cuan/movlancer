@@ -1,7 +1,6 @@
 package com.alyssacuan.movlancer.network_connection
 
 import com.alyssacuan.movlancer.models.Result
-import com.alyssacuan.movlancer.network_connection.*
 
 
 /**

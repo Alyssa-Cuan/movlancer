@@ -1,20 +1,17 @@
 package com.alyssacuan.movlancer
 
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
-import android.view.MenuItem
 import android.widget.BaseAdapter
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.alyssacuan.movlancer.models.Movie
-
 import com.alyssacuan.movlancer.network_connection.SearchRepositoryProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -30,10 +27,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-//        layoutManager = GridLayoutManager(this, 2)
-//        recyclerView.layoutManager = layoutManager
-//        var grid = GridItemDecoration(10,2)
-//        recyclerView.addItemDecoration(grid)
+        var movColor = ContextCompat.getColor(this, R.color.movColor)
+        var lancerColor = ContextCompat.getColor(this, R.color.lancerColor)
+        getSupportActionBar()?.setTitle(Html.fromHtml("<font color=${movColor}>${getString(R.string.app_firstname)}</font><font color=${lancerColor}>${getString(R.string.app_lastname)}</font>"))
+
 
         val repository = SearchRepositoryProvider.provideSearchRepository()
 
@@ -42,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe ({ result ->
-                    //Log.d("Result", "There are ${result.total_results} results")
+                    Log.d("Result", "There are ${result.total_results} results")
                     movieList = result.results
                     //Log.d("Result", "size: ${movieList.size}")
                     adapter = GridAdapter(this, movieList)

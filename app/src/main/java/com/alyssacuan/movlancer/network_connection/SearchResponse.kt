@@ -1,7 +1,5 @@
 package com.alyssacuan.movlancer.network_connection
 
-import com.google.gson.annotations.SerializedName
-
 /**
  * Equivalent of user data class in kotlin
  */
