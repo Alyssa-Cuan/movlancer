@@ -1,5 +1,7 @@
 package com.alyssacuan.movlancer
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
         var movColor = ContextCompat.getColor(this, R.color.movColor)
         var lancerColor = ContextCompat.getColor(this, R.color.lancerColor)
+        var actionBarColor = ContextCompat.getColor(this, R.color.appBarColor)
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(actionBarColor))
         getSupportActionBar()?.setTitle(Html.fromHtml("<font color=${movColor}>${getString(R.string.app_firstname)}</font><font color=${lancerColor}>${getString(R.string.app_lastname)}</font>"))
 
 

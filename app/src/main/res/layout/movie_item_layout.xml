@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:background="#ddd"
+        android:background="@color/bgColor"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="15dp">
@@ -14,15 +14,27 @@
             android:layout_height="120dp" />
 
 
+    <RatingBar
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:rating="5"
+            android:layout_height="15dp"
+            android:numStars="5"
+            android:layout_marginTop="10dp"
+            android:progressTint="@color/starColor"
+            android:layout_gravity="left"
+            android:id="@+id/ratingBar"/>
     <TextView
             android:id="@+id/movie_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="left"
             android:text="French Fries"
+            android:textColor="@color/fontColor"
             android:ellipsize="end"
             android:maxEms="15"
             android:singleLine="true"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"/>
 
 </LinearLayout>

@@ -8,5 +8,6 @@
     <color name="appBarColor">#31333B</color>
     <color name="bgColor">#282A32</color>
     <color name="fontColor">#FFFFFF</color>
+    <color name="starColor">#FFB61A</color>
 
 </resources>
