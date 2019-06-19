@@ -1,4 +1,4 @@
-package com.alyssacuan.movlancer.helpers
+package com.alyssacuan.movlancer.utils
 
 import androidx.recyclerview.widget.DiffUtil
 import com.alyssacuan.movlancer.models.Movie

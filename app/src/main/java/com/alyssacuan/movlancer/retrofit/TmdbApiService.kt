@@ -1,7 +1,6 @@
-package com.alyssacuan.movlancer.network_connection
+package com.alyssacuan.movlancer.retrofit
 
 import com.alyssacuan.movlancer.models.Result
-import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

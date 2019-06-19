@@ -7,23 +7,19 @@ import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alyssacuan.movlancer.models.Movie
-import com.alyssacuan.movlancer.network_connection.MovieDataSource
-import io.reactivex.disposables.CompositeDisposable
+import com.alyssacuan.movlancer.room.MovieBoundaryCallback
+import com.alyssacuan.movlancer.room.MovieDb
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private var adapter = MovieAdapter()
-
-    val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    private var movieList : List<Movie> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,12 +65,12 @@ class MainActivity : AppCompatActivity() {
     private fun initializedPagedListBuilder(config: PagedList.Config):
             LivePagedListBuilder<Int, Movie> {
 
-        val dataSourceFactory = object : DataSource.Factory<Int, Movie>() {
-            override fun create(): DataSource<Int, Movie> {
-                return MovieDataSource()
-            }
-        }
-        return LivePagedListBuilder<Int, Movie>(dataSourceFactory, config)
+        val database = MovieDb.create(this)
+        val livePageListBuilder = LivePagedListBuilder<Int, Movie>(
+            database.movieDao().getAll(),
+            config)
+        livePageListBuilder.setBoundaryCallback(MovieBoundaryCallback(database))
+        return livePageListBuilder
     }
 
 

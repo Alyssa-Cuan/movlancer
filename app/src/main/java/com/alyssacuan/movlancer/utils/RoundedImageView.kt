@@ -1,4 +1,4 @@
-package com.alyssacuan.movlancer.helpers
+package com.alyssacuan.movlancer.utils
 
 import android.content.Context
 import android.graphics.Bitmap
