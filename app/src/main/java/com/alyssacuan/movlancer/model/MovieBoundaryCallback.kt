@@ -1,9 +1,8 @@
-package com.alyssacuan.movlancer.room
+package com.alyssacuan.movlancer.model
 
 import android.util.Log
 import androidx.paging.PagedList
-import com.alyssacuan.movlancer.models.*
-import com.alyssacuan.movlancer.retrofit.TmdbApiService
+import com.alyssacuan.movlancer.app.MovieApplication.Companion.database
 import com.alyssacuan.movlancer.utils.PagingRequestHelper
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,7 +39,7 @@ class MovieBoundaryCallback(private val db: MovieDb) :
                         //4
                         val posts = response.body()?.results
                         executor.execute {
-                            db.movieDao().insert(posts ?: listOf())
+                            database.movieDao().insert(posts ?: listOf())
                             helperCallback.recordSuccess()
                         }
                     }
@@ -52,7 +51,7 @@ class MovieBoundaryCallback(private val db: MovieDb) :
         super.onItemAtEndLoaded(itemAtEnd)
 
         executor.execute {
-            var page = db.movieDao().getCount()
+            var page = database.movieDao().getCount()
             pageNum =  page / PAGE_SIZE
             pageNum++
             Log.d("page", pageNum.toString())
@@ -73,7 +72,7 @@ class MovieBoundaryCallback(private val db: MovieDb) :
 
                         val posts = response.body()?.results
                         executor.execute {
-                            db.movieDao().insert(posts ?: listOf())
+                            database.movieDao().insert(posts ?: listOf())
                             helperCallback.recordSuccess()
                         }
                     }

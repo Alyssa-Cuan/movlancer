@@ -1,6 +1,5 @@
-package com.alyssacuan.movlancer.retrofit
+package com.alyssacuan.movlancer.model
 
-import com.alyssacuan.movlancer.models.Result
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

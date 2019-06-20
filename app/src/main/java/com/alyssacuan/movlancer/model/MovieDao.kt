@@ -1,11 +1,11 @@
-package com.alyssacuan.movlancer.room
+package com.alyssacuan.movlancer.model
 
 import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.alyssacuan.movlancer.models.Movie
+import com.alyssacuan.movlancer.model.Movie
 
 @Dao
 interface MovieDao {
@@ -17,4 +17,7 @@ interface MovieDao {
 
     @Query("SELECT COUNT(*) FROM Movie")
     fun getCount(): Int
+
+    @Query("SELECT * From Movie WHERE title LIKE '%' || :movieTitle || '%'")
+    fun getTitle(movieTitle : String): DataSource.Factory<Int, Movie>
 }

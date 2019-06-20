@@ -1,12 +1,13 @@
-package com.alyssacuan.movlancer
+package com.alyssacuan.movlancer.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.alyssacuan.movlancer.R
 import com.alyssacuan.movlancer.utils.MovieDiffUtilCallback
-import com.alyssacuan.movlancer.models.Movie
+import com.alyssacuan.movlancer.model.Movie
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_item_layout.view.*
 

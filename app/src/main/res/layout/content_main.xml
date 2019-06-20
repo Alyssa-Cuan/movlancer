@@ -9,7 +9,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main"
         android:background="@color/bgColor"
-        tools:context=".MainActivity" tools:layout_editor_absoluteY="56dp">
+        tools:context=".view.MainActivity" tools:layout_editor_absoluteY="56dp">
 
     <TextView
             android:text="Most Popular Movies"
@@ -29,19 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"/>
-
-    <!--<GridView-->
-            <!--android:id="@+id/recyclerView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:columnWidth="150dp"-->
-            <!--android:horizontalSpacing="0dp"-->
-            <!--android:numColumns="auto_fit"-->
-            <!--android:verticalSpacing="0dp"-->
-            <!--app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>-->
-
-
 
 
 </LinearLayout>
