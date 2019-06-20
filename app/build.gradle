@@ -26,6 +26,9 @@ android {
     dataBinding{
         enabled = true
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -63,8 +66,17 @@ dependencies {
     //Data Binding
     kapt 'com.android.databinding:compiler:3.1.4'
 
+    //Dagger
+    implementation 'com.google.dagger:dagger:2.16'
+    kapt 'com.google.dagger:dagger-compiler:2.16'
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+
     testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:2.23.0"
+    testImplementation 'org.mockito:mockito-inline:2.8.47'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
 }
 

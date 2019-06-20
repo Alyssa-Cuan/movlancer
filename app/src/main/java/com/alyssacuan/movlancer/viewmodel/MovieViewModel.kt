@@ -1,20 +1,18 @@
 package com.alyssacuan.movlancer.viewmodel
 
-import android.content.Context
-import android.util.Log
-import androidx.core.content.contentValuesOf
-import androidx.lifecycle.LifecycleOwner
+
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.alyssacuan.movlancer.app.MovieApplication
 import com.alyssacuan.movlancer.model.Movie
 import com.alyssacuan.movlancer.model.MovieBoundaryCallback
+import com.alyssacuan.movlancer.model.MovieDb
 
 
-class MovieViewModel : ViewModel(){
+class MovieViewModel() : ViewModel(){
 
     private lateinit var liveData : LiveData<PagedList<Movie>>
 
@@ -32,6 +30,7 @@ class MovieViewModel : ViewModel(){
 
         liveData = initializedPagedListBuilder(config).build()
 
+
     }
 
     private fun initializedPagedListBuilder(config: PagedList.Config):
@@ -39,7 +38,7 @@ class MovieViewModel : ViewModel(){
         val livePageListBuilder = LivePagedListBuilder<Int, Movie>(
             MovieApplication.database.movieDao().getAll(),
             config)
-        livePageListBuilder.setBoundaryCallback(MovieBoundaryCallback(MovieApplication.database))
+        livePageListBuilder.setBoundaryCallback(MovieBoundaryCallback())
         return livePageListBuilder
     }
 }

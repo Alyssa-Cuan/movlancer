@@ -63,9 +63,6 @@ class MainActivity : AppCompatActivity() {
     private fun configureObservers(){
         viewModel.getLiveData().observe(this, Observer<PagedList<Movie>> { pagedList ->
             adapter.submitList(pagedList)
-            var list : List<Movie> = pagedList.snapshot()
-
-            Log.d("live", list[0].popularity.toString())
         })
     }
 

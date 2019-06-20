@@ -9,7 +9,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.concurrent.Executors
 
-class MovieBoundaryCallback(private val db: MovieDb) :
+class MovieBoundaryCallback :
     PagedList.BoundaryCallback<Movie>() {
 
     private val api = TmdbApiService.create()
@@ -20,43 +20,24 @@ class MovieBoundaryCallback(private val db: MovieDb) :
 
     override fun onZeroItemsLoaded() {
         super.onZeroItemsLoaded()
-        //1
-        helper.runIfNotRunning(PagingRequestHelper.RequestType.INITIAL) { helperCallback ->
-            api.getPosts(page=pageNum)
-                //2
-                .enqueue(object : Callback<Result> {
-
-                    override fun onFailure(call: Call<Result>?, t: Throwable) {
-                        //3
-                        Log.e("MovieBoundaryCallback", "Failed to load data!")
-                        helperCallback.recordFailure(t)
-                    }
-
-                    override fun onResponse(
-                        call: Call<Result>?,
-                        response: Response<Result>
-                    ) {
-                        //4
-                        val posts = response.body()?.results
-                        executor.execute {
-                            database.movieDao().insert(posts ?: listOf())
-                            helperCallback.recordSuccess()
-                        }
-                    }
-                })
-        }
+        loadItem(PagingRequestHelper.RequestType.INITIAL)
     }
 
     override fun onItemAtEndLoaded(itemAtEnd: Movie) {
         super.onItemAtEndLoaded(itemAtEnd)
 
         executor.execute {
-            var page = database.movieDao().getCount()
+            val page = database.movieDao().getCount()
             pageNum =  page / PAGE_SIZE
             pageNum++
             Log.d("page", pageNum.toString())
         }
-        helper.runIfNotRunning(PagingRequestHelper.RequestType.AFTER) { helperCallback ->
+
+        loadItem(PagingRequestHelper.RequestType.AFTER)
+    }
+
+    private fun loadItem(requestType: PagingRequestHelper.RequestType){
+        helper.runIfNotRunning(requestType) { helperCallback ->
             api.getPosts(page = pageNum)
                 .enqueue(object : Callback<Result> {
 
@@ -78,6 +59,5 @@ class MovieBoundaryCallback(private val db: MovieDb) :
                     }
                 })
         }
-
     }
 }

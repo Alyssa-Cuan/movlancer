@@ -12,4 +12,4 @@ data class Movie(
     @ColumnInfo(name = "vote_average") @SerializedName("vote_average") val voteAverage: Double,
     @ColumnInfo(name = "poster_path") @SerializedName("poster_path") val posterPath: String,
     @ColumnInfo(name = "popularity") @SerializedName("popularity") val popularity: Double
-)
+    )
